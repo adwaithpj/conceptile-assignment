@@ -1,0 +1,18 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <div class="container" style="margin-top:2rem;">
+      <h1>Hello ,{{ user.username }}</h1>
+      <p>Welcome to the Quiz,</p>
+      {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      <a href="{% url 'quiz:redirect_start_quiz' %}" class="btn btn-primary">Start Quiz</a>
+    </div>
+  {% else %}
+    <p>
+      Welcome, new user. Please log in at{% url 'user_auth:login' %}
+    </p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Quiz Results</h1>
+    <p>Total Questions: {{ quiz_session.total_questions }}</p>
+    <p>Correct Answers: {{ quiz_session.correct_answers }}</p>
+    <p>Incorrect Answers: {{ quiz_session.incorrect_answers }}</p>
+
+    <div>
+      {% for session_question in session_questions %}
+        <div style="margin-bottom: 20px;">
+          <p>
+            <strong>Question:</strong> {{ session_question.question.text }}
+          </p>
+          {% for choice in session_question.question.choices.all %}
+            <p style="color: 
+                            {% if session_question.selected_choice.id == choice.id %}
+                {% if session_question.is_correct %}
+                  green
+                {% else %}
+                  red
+                {% endif %}
+              {% elif choice.is_correct %}
+                green
+              {% endif %};
+                        ">{{ choice.text }}</p>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
