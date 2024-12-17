@@ -1,7 +1,7 @@
 services:
   - type: web
     name: Conceptile-assignment
-    plan: starter
+    plan: free
     env: python
     region: singapore  # region should be same as your database region.
     buildCommand: "./build.sh"
